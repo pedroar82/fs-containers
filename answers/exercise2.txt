@@ -1,0 +1,37 @@
+==========================================================================
+Step 1. Run an Ubuntu container with the command given by hello-world
+
+> docker run -it ubuntu bash      
+Unable to find image 'ubuntu:latest' locally
+latest: Pulling from library/ubuntu
+01d7766a2e4a: Pull complete
+fd8cda969ed2: Download complete
+Digest: sha256:d1e2e92c075e5ca139d51a140fff46f84315c0fdce203eab2807c7e495eff4f9
+Status: Downloaded newer image for ubuntu:latest
+root@c95d14baa556:/#
+
+==========================================================================
+Step 2. Create directory /usr/src/app
+
+root@c95d14baa556:/# mkdir /usr/src/app
+root@c95d14baa556:/# ls
+bin  boot  dev  etc  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+root@c95d14baa556:/# cd usr/src
+root@c95d14baa556:/usr/src# ls
+app
+
+
+==========================================================================
+Step 3. Create a file /usr/src/app/index.js
+
+root@c95d14baa556:/# touch /usr/src/app/index.js
+root@c95d14baa556:/# cd /usr/src/app         
+root@c95d14baa556:/usr/src/app# ls
+index.js
+
+
+==========================================================================
+Step 4. Run exit to quit from the container
+
+root@c95d14baa556:/usr/src/app# exit
+exit

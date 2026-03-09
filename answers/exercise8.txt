@@ -1,0 +1,70 @@
+docker exec -it todo-backend-mongo-1 mongosh -u the_username -p the_password --authenticationDatabase the_database
+Current Mongosh Log ID: 69aea2505918c75e388563b0
+Connecting to:          mongodb://<credentials>@127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&authSource=the_database&appName=mongosh+2.7.0
+Using MongoDB:          8.2.5
+Using Mongosh:          2.7.0
+
+For mongosh info see: https://www.mongodb.com/docs/mongodb-shell/
+
+test> show dbs
+the_database  72.00 KiB
+
+test> use the_database
+switched to db the_database
+the_database> show collections
+todos
+
+the_database> db.todos.find({})
+[
+  {
+    _id: ObjectId('69ae7bfdae196026a18563b1'),
+    text: 'teste2',
+    done: true
+  },
+  {
+    _id: ObjectId('69ae7bfdae196026a18563b2'),
+    text: 'Learn about containers',
+    done: false
+  },
+  {
+    _id: ObjectId('69ae984cb467601efebc9e79'),
+    text: 'teste',
+    done: true,
+    __v: 0
+  }
+]
+
+
+the_database> try {
+|    db.todos.insertOne( { text: "Increase the number of tools in my tool belt", done: false } );
+| } catch (e) {
+|    print (e);
+| };
+{
+  acknowledged: true,
+  insertedId: ObjectId('69aea6c719ff900f808563b1')
+}
+the_database> db.todos.find({})
+[
+  {
+    _id: ObjectId('69ae7bfdae196026a18563b1'),
+    text: 'teste2',
+    done: true
+  },
+  {
+    _id: ObjectId('69ae7bfdae196026a18563b2'),
+    text: 'Learn about containers',
+    done: false
+  },
+  {
+    _id: ObjectId('69ae984cb467601efebc9e79'),
+    text: 'teste',
+    done: true,
+    __v: 0
+  },
+  {
+    _id: ObjectId('69aea6c719ff900f808563b1'),
+    text: 'Increase the number of tools in my tool belt',
+    done: false
+  }
+]

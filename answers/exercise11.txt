@@ -1,0 +1,49 @@
+
+== Go to the Redis container with docker exec and open the redis-cli.
+
+docker exec -it todo-backend-redis-1 redis-cli
+127.0.0.1:6379> 
+
+== Find the key you used with KEYS * (opens in a new tab)
+
+127.0.0.1:6379> KEYS *todos*
+"added_todos"
+
+== Check the value of the key with the command GET (opens in a new tab)
+
+127.0.0.1:6379> GET "added_todos"
+"5"
+
+== Set the value of the counter to 9001, find the right command from here (opens in a new tab)
+
+127.0.0.1:6379> SET "added_todos" 9001
+OK
+
+== Create a new todo with Postman and ensure from redis-cli that the counter has increased accordingly
+
+In Postman: PUT http://localhost:3001/todos
+
+{
+    "text": "new9001",
+    "done": true
+}
+
+127.0.0.1:6379> GET "added_todos"
+"9002"
+
+== Delete the key from the cli and ensure that the counter works when new todos are added
+
+127.0.0.1:6379> DEL "added_todos"
+(integer) 1
+
+added_todos: 0
+
+In Postman: PUT http://localhost:3001/todos
+
+{
+    "text": "new9002",
+    "done": true
+}
+
+127.0.0.1:6379> GET "added_todos"
+"1"

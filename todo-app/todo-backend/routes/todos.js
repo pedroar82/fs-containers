@@ -60,10 +60,7 @@ singleRouter.put('/', async (req, res) => {
   res.json(updatedTodo); 
 });
 
-router.get('/statistics', async (req, res) => {
-  const added_todos = await get("added_todos")
-  res.json({ added_todos : added_todos || 0});
-});
+
 
 router.use('/:id', findByIdMiddleware, singleRouter)
 

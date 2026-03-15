@@ -3,7 +3,8 @@ services:
     image: hello-front-dev
     volumes:
       - ./todo-frontend/:/usr/src/app
-
+    environment:
+      - VITE_BACKEND_URL=http://localhost:8080/api
     #container_name: hello-front-dev
 
 
@@ -27,8 +28,6 @@ services:
     environment:
     - MONGO_URL=mongodb://the_username:the_password@mongo:27017/the_database?authSource=the_database
     - REDIS_URL=redis://redis:6379
-    expose:
-    - "3001"
     depends_on:
     - mongo
     - redis 

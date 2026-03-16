@@ -3,7 +3,7 @@ FROM node:24 AS setup
 WORKDIR /usr/src/app
 COPY . .
 RUN npm ci
-ENV VITE_BACKEND_URL=http://localhost:3001/
+ENV VITE_BACKEND_URL=http://localhost:8080/api
 
 #Stage 2: test
 FROM setup AS test

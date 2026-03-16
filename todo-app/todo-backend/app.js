@@ -13,6 +13,10 @@ app.use(cors());
 app.use(logger('dev'));
 app.use(express.json());
 
+app.get('/ping', (req, res) => {
+  res.json({ status: 'OK', uptime: process.uptime() });
+});
+
 app.use('/', indexRouter);
 app.use('/todos', todosRouter);
 app.use('/statistics', statsRouter);
